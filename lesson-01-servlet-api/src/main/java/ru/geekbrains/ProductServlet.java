@@ -26,7 +26,6 @@ public class ProductServlet extends HttpServlet {
         PrintWriter wr = resp.getWriter();
         if (req.getParameter("id") != null) {
             long id = Long.parseLong(req.getParameter("id"));
-
             wr.println("<table>");
             wr.println("<tr>");
             wr.println("<th>Id</th>");
@@ -35,7 +34,7 @@ public class ProductServlet extends HttpServlet {
 
             wr.println("<tr>");
             wr.println("<td>" + productRepository.findById(id).getId() + "</td>");
-            wr.println("<td>" + productRepository.findById(id).getName() + "</td>");
+            wr.println("<td><a href=" + productRepository.findById(id).getName() + ">" + productRepository.findById(id).getName() +"</a></td>");
             wr.println("</tr>");
         } else if (req.getPathInfo() == null || req.getPathInfo().equals("/")) {
             wr.println("<table>");
