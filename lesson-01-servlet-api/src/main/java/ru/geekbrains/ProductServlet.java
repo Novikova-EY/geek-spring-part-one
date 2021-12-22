@@ -25,7 +25,17 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter wr = resp.getWriter();
         if (req.getParameter("id") != null) {
-            // TODO
+            long id = Long.parseLong(req.getParameter("id"));
+            wr.println("<table>");
+            wr.println("<tr>");
+            wr.println("<th>Id</th>");
+            wr.println("<th>Name</th>");
+            wr.println("</tr>");
+
+            wr.println("<tr>");
+            wr.println("<td>" + productRepository.findById(id).getId() + "</td>");
+            wr.println("<td><a href=" + productRepository.findById(id).getName() + ">" + productRepository.findById(id).getName() +"</a></td>");
+            wr.println("</tr>");
         } else if (req.getPathInfo() == null || req.getPathInfo().equals("/")) {
             wr.println("<table>");
 
@@ -38,7 +48,7 @@ public class ProductServlet extends HttpServlet {
                 wr.println("<tr>");
                 wr.println("<td>" + product.getId() + "</td>");
                 wr.println("<td>" + product.getName() + "</td>");
-                // TODO <a href='product?id=12'></a>
+
                 wr.println("</tr>");
             }
 
